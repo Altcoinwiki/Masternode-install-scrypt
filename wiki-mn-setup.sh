@@ -26,18 +26,18 @@ function print_info() {
 
 function install_packages() {
 	echo "Install packages..."
-	add-apt-repository -yu ppa:bitcoin/bitcoin  &>> ${SCRIPT_LOGFILE}
-	apt-get -y update &>> ${SCRIPT_LOGFILE}
-  	apt-get -y upgrade &>> ${SCRIPT_LOGFILE}
- 	sudo apt-get install p7zip-full &>> ${SCRIPT_LOGFILE}
-	apt-get -y install wget make automake autoconf build-essential libtool autotools-dev \
+	sudo add-apt-repository -yu ppa:bitcoin/bitcoin  &>> ${SCRIPT_LOGFILE}
+	sudo apt-get -y update &>> ${SCRIPT_LOGFILE}
+  	sudo apt-get -y upgrade &>> ${SCRIPT_LOGFILE}
+ 	sudo apt-get -y install p7zip-full &>> ${SCRIPT_LOGFILE}
+	sudo apt-get -y install wget make automake autoconf build-essential libtool autotools-dev \
 	git nano python-virtualenv pwgen virtualenv \
 	pkg-config libssl-dev libevent-dev bsdmainutils software-properties-common \
 	libboost-all-dev libminiupnpc-dev libdb4.8-dev libdb4.8++-dev &>> ${SCRIPT_LOGFILE}
 	sudo add-apt-repository ppa:ubuntu-toolchain-r/test &>> ${SCRIPT_LOGFILE}
-	sudo apt-get update &>> ${SCRIPT_LOGFILE}
-	sudo apt-get install gcc-4.9 &>> ${SCRIPT_LOGFILE}
-	sudo apt-get upgrade libstdc++6 &>> ${SCRIPT_LOGFILE}
+	sudo apt-get -y update &>> ${SCRIPT_LOGFILE}
+	sudo apt-get -y install gcc-4.9 &>> ${SCRIPT_LOGFILE}
+	sudo apt-get -y upgrade libstdc++6 &>> ${SCRIPT_LOGFILE}
 	echo "Install done..."
 }
 
