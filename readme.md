@@ -1,49 +1,40 @@
-WikiCoin Masternode Scrypt 1.0.0
-===============================
+Masternodescripts
 
+Masternode Install script for Wiki coin on Ubuntu VPS. This script configures a new vps, install dependencies, set up swapfile and cronjobs, and install WIKI in the specified path for ease of use. It also create a logfile of the install in .wikicore folder. Ip:port and private key show at the end for easy copy/paste to control wallet.
 
-http://altcoinwiki.io
+Go to Vultr > Deploy new server you choose location, os, and add Server Hostname & Label. Nothing else needed. Click on the new servers name to find IP and root password To connect to your VPS you need https://www.putty.org/, https://mobaxterm.mobatek.net/download.html or another SSH client.
 
-Installation
-------------
+Log in to the vps with Putty/MobaXterm, with username root and the password from vultr. To paste the password you right click in the screen once. It will not show anything on the screen, so hit enter to log in.
 
-To use the script use the following commands in linux.
+Copy/paste and run following commands:
 
-wget https://github.com/Altcoinwiki/Masternode-install-scrypt/blob/master/wiki-mn-setup.sh
+If the VPS is newly deployed, run these 3 lines first:
 
+apt-get update
+apt-get upgrade
+reboot
+To paste into a linux screen you right click in the screen once. After the reboot, log in again.
+
+Now when all is ready, install WIKI:
+
+wget https://raw.githubusercontent.com/Altcoinwiki/Masternode-install-scrypt/master/wiki-mn-setup.sh
+      
 chmod +x wiki-mn-setup.sh
+bash wiki-mn-setup.sh
+While waiting for the script to finish, you can set up the local wallet:
 
-./wiki-mn-setup.sh 
+Make a receive address called MN1
+Send collateral 15 000 WIKI to the newly made address. Wait for confirmations.
+Go to Settings > Advanced Options , and activate "Show Masternodes Tab"
+Go to Tools > Debug Console, and enter following: masternode outputs This returns collateral_output_txid and collateral_output_index
+Go to Tools > Open Masternode Configuration File The script prints a config line for this file. Add the config line like the example in the file, and add the returns from "masternode outputs" MN1 ip:port GENKEY collateral_output_txid collateral_output_index
+Where the ip:port and GENKEY is retrieved from the finished VPS install. collateral_output_txid AND collateral_output_index is from the Debug console.
 
-and then follow the steps on your screen.
+Save the file and restart your wallet. Wait until fully synchronized, then go to Masternode tab and start your Masternode.
 
+You can check on the VPS with commands:
 
-
-
-Testing
--------
-
-Testing and code review is the bottleneck for development; we get more pull
-requests than we can review and test on short notice. Please be patient and help out by testing
-other people's pull requests, and remember this is a security-critical project where any mistake might cost people
-lots of money.
-
-### Automated Testing
-
-Developers are strongly encouraged to write [unit tests](/doc/unit-tests.md) for new code, and to
-submit new unit tests for old code. Unit tests can be compiled and run
-(assuming they weren't disabled in configure) with: `make check`
-
-There are also [regression and integration tests](/qa) of the RPC interface, written
-in Python, that are run automatically on the build server.
-These tests can be run (if the [test dependencies](/qa) are installed) with: `qa/pull-tester/rpc-tests.py`
-
-The Travis CI system makes sure that every pull request is built for Windows
-and Linux, OS X, and that unit and sanity tests are automatically run.
-
-### Manual Quality Assurance (QA) Testing
-
-Changes should be tested by somebody other than the developer who wrote the
-code. This is especially important for large or high-risk changes. It is useful
-to add a test plan to the pull request description if testing the changes is
-not straightforward.
+check: wiki-cli masternode status
+stop:  wiki-cli stop
+start: wikid
+To see live output on the vps, use command: tail -f ~/.wikicore/debug.log
