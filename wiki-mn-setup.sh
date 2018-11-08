@@ -72,9 +72,9 @@ function download_wallet() {
     	cd wiki
 	wget https://github.com/Altcoinwiki/source/releases/download/v1.0.0/WikiCoin-1.0.0-x86_64-pc-linux-gnu.zip 
 	7z x WikiCoin-1.0.0-x86_64-pc-linux-gnu.zip
-	rm /root/wiki/WikiCoin-1.0.0-x86_64-pc-linux-gnu/wiki-qt
-	chmod +x /root/wiki/WikiCoin-1.0.0-x86_64-pc-linux-gnu/*
-	mv /root/wiki/WikiCoin-1.0.0-x86_64-pc-linux-gnu/* /usr/local/bin/
+	rm /root/wiki/wiki-qt
+	chmod +x /root/wiki/*
+	mv /root/wiki/* /usr/local/bin/
 	rm -rf /root/wiki/
 	echo "Done..."
 }
