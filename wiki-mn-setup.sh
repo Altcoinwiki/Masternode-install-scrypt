@@ -34,7 +34,7 @@ function install_packages() {
 	git nano python-virtualenv pwgen virtualenv \
 	pkg-config libssl-dev libevent-dev bsdmainutils software-properties-common \
 	libboost-all-dev libminiupnpc-dev libdb4.8-dev libdb4.8++-dev &>> ${SCRIPT_LOGFILE}
-	sudo add-apt-repository ppa:ubuntu-toolchain-r/test &>> ${SCRIPT_LOGFILE}
+	sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y &>> ${SCRIPT_LOGFILE}
 	sudo apt-get -y update &>> ${SCRIPT_LOGFILE}
 	sudo apt-get -y install gcc-4.9 &>> ${SCRIPT_LOGFILE}
 	sudo apt-get -y upgrade libstdc++6 &>> ${SCRIPT_LOGFILE}
