@@ -6,7 +6,7 @@ NODEPORT='13888'
 RPCPORT='3322'
 # Useful variables
 declare -r DATE_STAMP="$(date +%y-%m-%d-%s)"
-declare -r SCRIPT_LOGFILE="/root/.wikicore/log_inst_wiki_node_${DATE_STAMP}_out.log"
+declare -r SCRIPT_LOGFILE="/root/log_inst_wiki_node_${DATE_STAMP}_out.log"
 declare -r SCRIPTPATH=$( cd $(dirname ${BASH_SOURCE[0]}) > /dev/null; pwd -P )
 declare -r WANIP=$(dig +short myip.opendns.com @resolver1.opendns.com)
 function print_greeting() {
